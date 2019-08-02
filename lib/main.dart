@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hello_world/page/BasePage.dart';
-import 'package:flutter_hello_world/page/index.dart';
+import 'package:flutter_hello_world/routes.dart' as route;
 
 void main() => runApp(MyApp3());
 
@@ -49,10 +49,7 @@ class MyApp3 extends StatelessWidget{
         primarySwatch: Colors.blue
       ),
       home: HomePage(),
-      routes: {
-        'change': (context) => MyPage(),
-        'list_view': (context) => ListViewDemo()
-      },
+      onGenerateRoute: route.getRoute
     );
   }
   
@@ -70,9 +67,9 @@ const DEMOS = [
     routeName: 'list_view',
   ),
   Demo(
-    title: '跳转',
-    description: '跳转到下一个界面',
-    routeName: 'change',
+    title: '电影',
+    description: '电影界面',
+    routeName: 'movie',
   ),
   Demo(
     title: '跳转',
