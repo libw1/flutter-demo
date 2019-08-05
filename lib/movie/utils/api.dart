@@ -12,3 +12,14 @@ getMovieList({history = false, start = 0, count = 10}) async {
     print("Request failed with status: ${res.statusCode}.");
   }
 }
+
+
+getMovieDetail(id) async {
+  var url = 'https://api.douban.com/v2/movie/subject/$id?apikey=$apikey';
+  var res = await http.get(url);
+  if(res.statusCode == 200){
+    return convert.jsonDecode(res.body);
+  }else{
+    print("Request failed with status: ${res.statusCode}.");
+  }
+}

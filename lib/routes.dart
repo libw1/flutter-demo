@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hello_world/page/BasePage.dart';
 import 'package:flutter_hello_world/page/index.dart';
 import 'package:flutter_hello_world/movie/Home.dart';
+import 'package:flutter_hello_world/movie/screens/MovieDetail.dart';
 
 Route<dynamic> getRoute(RouteSettings routeSettings){
 
@@ -13,6 +14,10 @@ Route<dynamic> getRoute(RouteSettings routeSettings){
     case "movie":
       return MaterialPageRoute(builder: (context) => Home());
     case "detail":
-      return MaterialPageRoute(builder: (context) => MyPage());
+      var arguments = routeSettings.arguments;
+      return MaterialPageRoute(builder: (context) => MovieDetail(id: arguments));
+//    case "video":
+//      var arguments = routeSettings.arguments;
+//      return
   }
 }
