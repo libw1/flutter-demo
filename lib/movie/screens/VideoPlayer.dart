@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+import 'package:chewie/chewie.dart';
 
 
 class VideoPage extends StatefulWidget{
@@ -13,26 +14,23 @@ class VideoPage extends StatefulWidget{
 
 class _VideoPlayerPage extends State<VideoPage>{
   VideoPlayerController _controller;
-
+  ChewieController _chewieController;
   @override
   void initState() {
-    _controller =
-    VideoPlayerController.network(widget.url.replaceFirst('http', 'https'))
-      ..initialize().then((_) {
-        setState(() {
-          _controller.play();
-        });
-      });
-
-    // Use the controller to loop the video.
-    _controller.setLooping(true);
-
+    _controller = VideoPlayerController.network(widget.url);
+    _chewieController = ChewieController(
+      videoPlayerController: _controller,
+      aspectRatio: 3 / 2,
+      autoPlay: true,
+      looping: true,
+    );
     super.initState();
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _chewieController.dispose();
     super.dispose();
   }
   @override
@@ -42,27 +40,11 @@ class _VideoPlayerPage extends State<VideoPage>{
         title: Text('预告片'),
       ),
       body: Center(
-        child: _controller.value.initialized
-            ? AspectRatio(
-          aspectRatio: _controller.value.aspectRatio,
-          child: VideoPlayer(_controller),
-        )
-            : CircularProgressIndicator(),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            if (_controller.value.isPlaying) {
-              _controller.pause();
-            } else {
-              _controller.play();
-            }
-          });
-        },
-        child: Icon(
-          _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-        ),
-      ),
+            child: AspectRatio(
+              aspectRatio: _chewieController.aspectRatio,
+              child: Chewie(controller: _chewieController)
+            )
+          )
     );
   }
 
