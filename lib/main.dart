@@ -72,9 +72,9 @@ const DEMOS = [
     routeName: 'movie',
   ),
   Demo(
-    title: '跳转',
-    description: '跳转到下一个界面',
-    routeName: 'change',
+    title: 'ios风格',
+    description: '跳转到ios风格',
+    routeName: 'ios',
   ),
 ];
 
