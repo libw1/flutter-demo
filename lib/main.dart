@@ -76,6 +76,16 @@ const DEMOS = [
     description: '跳转到ios风格',
     routeName: 'ios',
   ),
+  Demo(
+    title: 'youtube player',
+    description: 'youtube播放器',
+    routeName: 'youtube_player',
+  ),
+  Demo(
+    title: 'ios风格',
+    description: '跳转到ios风格',
+    routeName: 'ios',
+  ),
 ];
 
 class Demo {

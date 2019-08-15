@@ -5,6 +5,7 @@ import 'package:flutter_hello_world/movie/Home.dart';
 import 'package:flutter_hello_world/movie/screens/MovieDetail.dart';
 import 'package:flutter_hello_world/movie/screens/VideoPlayer.dart';
 import 'package:flutter_hello_world/movie/screens/Cupertino.dart';
+import 'package:flutter_hello_world/movie/screens/YoutubePlayer.dart';
 
 Route<dynamic> getRoute(RouteSettings routeSettings){
 
@@ -23,5 +24,7 @@ Route<dynamic> getRoute(RouteSettings routeSettings){
       return MaterialPageRoute(builder: (context) => VideoPage(url: url));
     case 'ios':
       return MaterialPageRoute(builder: (context) => CupertinoPage());
+    case 'youtube_player':
+      return MaterialPageRoute(builder: (context) => YoutubePlayerPage());
   }
 }
