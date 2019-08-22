@@ -26,5 +26,7 @@ Route<dynamic> getRoute(RouteSettings routeSettings){
       return MaterialPageRoute(builder: (context) => CupertinoPage());
     case 'youtube_player':
       return MaterialPageRoute(builder: (context) => YoutubePlayerPage());
+    default:
+      return null;
   }
 }
