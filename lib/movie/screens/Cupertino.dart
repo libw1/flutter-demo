@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class CupertinoPage extends StatefulWidget{
 
@@ -105,19 +106,38 @@ class _CupertinoPage extends State<CupertinoPage>{
   }
 
   void _showCupertinoDatePicker(BuildContext cxt){
-    final picker =CupertinoDatePicker(onDateTimeChanged: (date){
-      print("the date is ${date.toString()}");
-    },
-      initialDateTime: DateTime(1995),
-    );
-
-    showCupertinoModalPopup(context: cxt, builder: (cxt){
-      return Container(
-        height: 200,
-        child: picker,
-      );
+//    final picker =CupertinoDatePicker(
+//      onDateTimeChanged: (date){
+//        print("the date is ${date.toString()}");
+//        },
+//      initialDateTime: DateTime(1995),
+//    );
+    showDatePicker(
+      context: cxt,
+      initialDate: new DateTime.now(),
+      firstDate: new DateTime.now().subtract(new Duration(days: 30)), // 减 30 天
+      lastDate: new DateTime.now().add(new Duration(days: 30)),       // 加 30 天
+      locale: Locale('zh')
+    ).then((DateTime val) {
+      print(val);   // 2018-07-12 00:00:00.000
+    }).catchError((err) {
+      print(err);
     });
+//    showCupertinoModalPopup(
+//        context: cxt,
+//        builder: (cxt){
+//      return Localizations(
+//          locale: const Locale('zh'),
+//          child: Container(height: 200,child: picker),
+//          delegates: <LocalizationsDelegate>[
+//            GlobalMaterialLocalizations.delegate,
+//            GlobalWidgetsLocalizations.delegate,
+//            DefaultCupertinoLocalizations.delegate,
+//          ]
+//      );
+//    });
   }
+
 
   bool _lights = false;
   @override

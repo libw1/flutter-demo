@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hello_world/page/BasePage.dart';
 import 'package:flutter_hello_world/routes.dart' as route;
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter/cupertino.dart';
 
 void main() => runApp(MyApp3());
 
@@ -44,12 +46,23 @@ class MyApp3 extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      locale: Locale('zh'),
+      debugShowCheckedModeBanner: false,
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        DefaultCupertinoLocalizations.delegate,
+      ],
       title: "Flutter Demo",
       theme: ThemeData(
         primarySwatch: Colors.blue
       ),
       home: HomePage(),
-      onGenerateRoute: route.getRoute
+      onGenerateRoute: route.getRoute,
+      supportedLocales: [
+        const Locale('en','US'),
+        const Locale('zh','CH')
+      ],
     );
   }
   
